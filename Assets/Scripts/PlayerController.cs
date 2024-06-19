@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private CharacterController characterController;
     [SerializeField] private float playerSpeed = 350f;
 
-    [SerializeField] private GameObject food;
+    [SerializeField] private Rigidbody food;
     void Start()
     {
         characterController = gameObject.AddComponent<CharacterController>();
@@ -23,9 +23,11 @@ public class PlayerController : MonoBehaviour
     }
     void shoot()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetButtonDown("Fire1"))
         {
-            Instantiate(food, gameObject.transform.position, Quaternion.identity);
+            Rigidbody clone;
+            clone = Instantiate(food, transform.position, transform.rotation);
+            clone.velocity = transform.TransformDirection(Vector3.forward * 10);
         }
     }
 }
