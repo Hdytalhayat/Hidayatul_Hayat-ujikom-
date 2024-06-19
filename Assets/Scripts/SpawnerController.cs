@@ -6,7 +6,7 @@ using UnityEngine;
 public class SpawnerController : MonoBehaviour
 {
     [SerializeField] private GameObject[] animals;
-    int interval = 10;
+    [SerializeField] private int index;
     void Start()
     {
 
@@ -15,16 +15,17 @@ public class SpawnerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        StartCoroutine(Spawn());
+        index = Random.Range(1, 4);
+        StartCoroutine(Spawn(index));
     }
-    IEnumerator Spawn()
+    IEnumerator Spawn(int random)
     {
         yield return new WaitForSeconds(2);
-        Init();   
+        Init(random);
     }
-    void Init()
+    void Init(int random)
     {
-        Instantiate(animals[Random.Range(1, 4)], new Vector3(Random.Range(-4,4),transform.position.y, transform.position.z), transform.rotation);
+        Instantiate(animals[random], new Vector3(Random.Range(-4,4),transform.position.y, transform.position.z), transform.rotation);  
         
     }
 }

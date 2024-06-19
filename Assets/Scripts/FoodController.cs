@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FoodController : MonoBehaviour
 {
-    [SerializeField]private int destroTime = 20;
+
     void Start()
     {
     }

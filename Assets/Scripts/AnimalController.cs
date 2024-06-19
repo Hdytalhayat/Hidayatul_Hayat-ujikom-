@@ -23,7 +23,7 @@ public class AnimalController : MonoBehaviour
     }
     IEnumerator DestroyObj()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(8);
         Destroy(gameObject);
     }
 
