@@ -9,10 +9,12 @@ public class AnimalController : MonoBehaviour
     [SerializeField]private float hunger;
     [SerializeField]private int score;
     [SerializeField]private Rigidbody rb;
+    [SerializeField]private AudioSource audioSource;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -23,8 +25,17 @@ public class AnimalController : MonoBehaviour
     }
     IEnumerator DestroyObj()
     {
-        yield return new WaitForSeconds(8);
+        yield return new WaitForSeconds(4);
         Destroy(gameObject);
+    }
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.collider.name == "Food(Clone)")
+        {
+            Debug.Log("TRUE");
+            audioSource.Play();
+            Destroy(gameObject);
+        }
     }
 
 }

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,10 +12,13 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Rigidbody food;
     [SerializeField] private Animator animator;
+    [SerializeField]private AudioSource menuClip;
+    [SerializeField]private Button menubtn;
     void Start()
     {
         characterController = gameObject.AddComponent<CharacterController>();
         animator = GetComponent<Animator>();
+        menubtn.onClick.AddListener(MenuBtn);
     }
 
     // Update is called once per frame
@@ -40,5 +45,10 @@ public class PlayerController : MonoBehaviour
             clone = Instantiate(food, transform.position, transform.rotation);
             clone.velocity = transform.TransformDirection(Vector3.forward * 10);
         }
+    }
+    void MenuBtn()
+    {
+        menuClip.Play();
+        SceneManager.LoadScene("MainMenu");
     }
 }
