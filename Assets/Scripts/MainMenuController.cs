@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class MainMenuController : MonoBehaviour
 {
     [SerializeField]private Button playbtn;
+    [SerializeField]private AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +21,7 @@ public class MainMenuController : MonoBehaviour
     }
     public void PlayButton()
     {
+        audioSource.Play();
         SceneManager.LoadScene("SampleScene");
     }
 }
